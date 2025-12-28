@@ -2,14 +2,26 @@ import React from "react";
 import Stats from "./components/Stats";
 import RecentTasks from "./components/RecentTasks";
 import { getTasks } from "@/lib/getTasks";
+import { Bell } from "lucide-react";
 
 export default async function DashboardPage() {
-  const tasks = await getTasks();
+  const { tasks } = await getTasks();
 
   return (
     <main className="flex-1 p-4 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
-
+      <div className="mb-6 bg-white p-2 flex items-center justify-between rounded-2xl shadow">
+        <div>
+          <h1 className="text-2xl font-bold m-2">Dashboard</h1>
+          <p className="text-gray-600 m-2">
+            Welcome back! Here's an overview of your tasks.
+          </p>
+        </div>
+        <div className="p-2 mr-5 bg-white rounded-full shadow-md hover:shadow-lg cursor-pointer">
+          <span>
+            <Bell className="hover:scale-125" />
+          </span>
+        </div>
+      </div>
       <Stats tasks={tasks} />
       <RecentTasks tasks={tasks} />
     </main>

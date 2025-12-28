@@ -1,11 +1,19 @@
 export async function getTasks() {
-  const res = await fetch("http://localhost:3001/tasks", {
-    cache: "no-store", // always fresh data
-  });
+  const [tasksRes, projectsRes] = await Promise.all([
+    fetch("http://localhost:3001/tasks", {
+      cache: "no-store",
+    }),
+    fetch("http://localhost:3001/projects", {
+      cache: "no-store",
+    }),
+  ]);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch tasks");
+  if (!tasksRes.ok || !projectsRes.ok) {
+    throw new Error("Failed to fetch tasks or projects");
   }
 
-  return res.json();
+  const tasks = await tasksRes.json();
+  const projects = await projectsRes.json();
+
+  return { tasks, projects };
 }

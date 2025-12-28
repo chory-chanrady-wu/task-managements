@@ -1,20 +1,22 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
+import { getTasks } from "@/lib/getTasks";
+import { Bell } from "lucide-react";
 
-export default async function page() {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+export default async function DashboardPage() {
+  const { tasks } = await getTasks();
+
   return (
-    <div>
-      <div>
-        <h2 className="bg-gray-500 p-3 text-white rounded-sm text-center text-xl font-bold">
-          Projects Dashboard
-        </h2>
+    <main className="flex-1 p-4 bg-gray-100 min-h-screen">
+      <div className="mb-2 bg-slate-100 p-2 flex items-center justify-between rounded-2xl shadow">
+        <div>
+          <h1 className="text-2xl font-bold m-2">Projects</h1>
+          <p className="text-gray-600 m-2">Total Tasks: {tasks.length}</p>
+        </div>
+        <div className="p-2 mr-5 bg-white rounded-full shadow-md hover:shadow-lg cursor-pointer">
+          <span>
+            <Bell className="hover:scale-125" />
+          </span>
+        </div>
       </div>
-      <div>
-        <Button className="bg-green-500 p-2 mt-2 hover:bg-green-600">
-          New Project 
-        </Button>
-      </div>
-    </div>
+    </main>
   );
 }
