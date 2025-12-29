@@ -14,7 +14,7 @@ export default function ProjectSummary({
   const completed = projects.filter((p) => p.status === "completed").length;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-center">
       <ProjectCard
         icon={<Briefcase className="w-6 h-6" />}
         label="Total Projects"
