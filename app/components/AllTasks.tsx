@@ -23,14 +23,23 @@ const statusLabel = {
   done: "Done",
 };
 
-function formatDate(value) {
+function formatDate(value: string | null | undefined): string {
   if (!value) return "No due date";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "No due date";
   return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }
 
-export default function AllTasks({ tasks = [] }) {
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  status: "todo" | "in-progress" | "done";
+  dueDate?: string;
+  comments?: Array<{ author: string }>;
+}
+
+export default function AllTasks({ tasks = [] }: { tasks?: Task[] }) {
   const [filter, setFilter] = useState("all");
 
   const filteredTasks = useMemo(() => {
@@ -44,7 +53,7 @@ export default function AllTasks({ tasks = [] }) {
         {FILTERS.map((f) => (
           <Button
             key={f.key}
-            variant={filter === f.key ? "default" : ""}
+            variant={filter === f.key ? "default" : "destructive"}
             className={`min-w-[96px] rounded-xl ${
               filter === f.key ? "bg-blue-500 hover:bg-blue-600 text-white" : ""
             }`}

@@ -16,10 +16,12 @@ export default async function DashboardPage() {
         <div className="flex items-center gap-4">
           <div className="p-2 mr-5 bg-white rounded-full shadow-md hover:shadow-lg cursor-pointer">
             <span>
-              <Bell className="hover:scale-125"/>
+              <Bell className="hover:scale-125" />
             </span>
           </div>
-            <Button className="mr-5 rounded-xl bg-green-500 hover:bg-green-600 hover:text-white hover:scale-105">New Task</Button>
+          <Button className="mr-5 rounded-xl bg-green-500 hover:bg-green-600 hover:text-white hover:scale-105">
+            New Task
+          </Button>
         </div>
       </div>
       <div>
