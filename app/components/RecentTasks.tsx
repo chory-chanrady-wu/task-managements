@@ -1,4 +1,3 @@
-import React from "react";
 import {
   CardHeader,
   Card,
@@ -23,11 +22,14 @@ const statusStyle: Record<string, string> = {
 export default function RecentTasks({ tasks }: { tasks: Task[] }) {
   return (
     <div className="bg-white rounded-xl p-6 mt-6 shadow-md">
-        <h2 className="text-xl font-bold mb-4">Recent Tasks</h2>
+      <h2 className="text-xl font-bold mb-4">Recent Tasks</h2>
       <Card>
         <ul className="space-y-4">
           {tasks.slice(0, 5).map((task) => (
-            <li key={task.id} className="border-b border-b-gray-300 pb-4 last:border-b-0">
+            <li
+              key={task.id}
+              className="border-b border-b-gray-300 pb-4 last:border-b-0"
+            >
               <div className="flex items-center justify-between mb-2">
                 <input type="checkbox" className="mr-2" />
                 <CardHeader className="mr-2">#{task.id}</CardHeader>

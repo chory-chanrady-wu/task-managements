@@ -1,3 +1,8 @@
+"use client";
+
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { ChartContainer } from "@/components/ui/chart";
+
 type Task = {
   status: "todo" | "in-progress" | "done";
   dueDate: string;
@@ -8,31 +13,46 @@ export default function Stats({ tasks }: { tasks: Task[] }) {
   const completed = tasks.filter((t) => t.status === "done").length;
   const inProgress = tasks.filter((t) => t.status === "in-progress").length;
   const todo = tasks.filter((t) => t.status === "todo").length;
-  const overdue = tasks.filter((t)=> t.dueDate < new Date().toISOString() && t.status !== "done").length;
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-4 text-center">
-      <Stat title="Total Tasks" value={total} />
-      <Stat title="Completed" value={completed} />
-      <Stat title="In Progress" value={inProgress} />
-      <Stat title="To Do" value={todo} />
-      <Stat title="Overdue" value={overdue} />
-    </div>
-  );
-}
+  const overdue = tasks.filter(
+    (t) => t.dueDate < new Date().toISOString() && t.status !== "done"
+  ).length;
 
-function Stat({ title, value }: { title: string; value: number }) {
-  const getColorClass = () => {
-    if (title === "Completed") return "bg-green-500";
-    if (title === "In Progress") return "bg-blue-500";
-    if (title === "To Do") return "bg-yellow-500";
-    if (title === "Overdue") return "bg-red-500";
-    return "bg-gray-500";
-  };
+  const chartData = [
+    { name: "Total", value: total, fill: "hsl(240, 50%, 64%)" },
+    { name: "Completed", value: completed, fill: "hsl(142, 76%, 36%)" },
+    { name: "In Progress", value: inProgress, fill: "hsl(221, 83%, 53%)" },
+    { name: "To Do", value: todo, fill: "hsl(48, 96%, 53%)" },
+    { name: "Overdue", value: overdue, fill: "hsl(0, 84%, 60%)" },
+  ];
 
   return (
-    <div className={`${getColorClass()} p-6 rounded-2xl shadow-md text-white`}>
-      <p className="text-white/90">{title}</p>
-      <h2 className="text-3xl font-bold">{value}</h2>
+    <div className="w-full">
+      <ChartContainer
+        config={{
+          value: {
+            label: "Tasks",
+          },
+        }}
+        className="h-[300px] w-50%"
+      >
+        <BarChart data={chartData} margin={{ top: 20 }}>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <XAxis
+            dataKey="name"
+            tickLine={false}
+            tickMargin={10}
+            axisLine={false}
+          />
+          <Bar
+            dataKey="value"
+            radius={8}
+            label={{
+              position: "top",
+              style: { fontSize: "12px", fontWeight: "bold", fill: "#000" },
+            }}
+          />
+        </BarChart>
+      </ChartContainer>
     </div>
   );
 }

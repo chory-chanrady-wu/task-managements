@@ -5,7 +5,6 @@ import ProjectSummary from "./components/ProjectSummary";
 import { getTasks } from "@/lib/getTasks";
 import { Bell } from "lucide-react";
 
-
 export default async function DashboardPage() {
   const { tasks, projects } = await getTasks();
 
@@ -24,8 +23,10 @@ export default async function DashboardPage() {
           </span>
         </div>
       </div>
-      <ProjectSummary projects={projects}/>
-      <Stats tasks={tasks} />
+      <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <ProjectSummary projects={projects} />
+        <Stats tasks={tasks} />
+      </div>
       <RecentTasks tasks={tasks} />
     </main>
   );
