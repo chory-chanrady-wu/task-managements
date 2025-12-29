@@ -256,13 +256,13 @@ export default function ProjectDetailPage({
               >
                 {getStatusLabel(task.status)}
               </span>
-
+{/* 
               {task.comments && task.comments.length > 0 && (
                 <div className="flex items-center gap-1 text-sm text-gray-600">
                   <MessageCircle className="w-4 h-4" />
                   <span>{task.comments.length}</span>
                 </div>
-              )}
+              )} */}
 
               {task.assignees && task.assignees.length > 0 && (
                 <div className="flex -space-x-2">

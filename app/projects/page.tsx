@@ -2,6 +2,7 @@ import { getTasks } from "@/lib/getTasks";
 import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AllProject from "../components/AllProject";
+import Link from "next/link";
 
 export default async function DashboardPage() {
   const { projects } = await getTasks();
@@ -19,9 +20,11 @@ export default async function DashboardPage() {
               <Bell className="hover:scale-125" />
             </span>
           </div>
-          <Button className="mr-5 rounded-xl bg-green-500 hover:bg-green-600 hover:text-white hover:scale-105">
-            New Project
-          </Button>
+          <Link href="/projects/new">
+            <Button className="mr-5 rounded-xl bg-green-500 hover:bg-green-600 hover:text-white hover:scale-105">
+              New Project
+            </Button>
+          </Link>
         </div>
       </div>
       <div>
