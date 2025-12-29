@@ -33,7 +33,7 @@ export default function Stats({ tasks }: { tasks: Task[] }) {
             label: "Tasks",
           },
         }}
-        className="h-[300px] w-50%"
+        className="h-[300px] w-full"
       >
         <BarChart data={chartData} margin={{ top: 20 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
