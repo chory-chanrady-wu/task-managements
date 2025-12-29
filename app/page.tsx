@@ -1,11 +1,13 @@
 import React from "react";
 import Stats from "./components/Stats";
 import RecentTasks from "./components/RecentTasks";
+import ProjectSummary from "./components/ProjectSummary";
 import { getTasks } from "@/lib/getTasks";
 import { Bell } from "lucide-react";
 
+
 export default async function DashboardPage() {
-  const { tasks } = await getTasks();
+  const { tasks, projects } = await getTasks();
 
   return (
     <main className="flex-1 p-4 bg-gray-100 min-h-screen">
@@ -22,6 +24,7 @@ export default async function DashboardPage() {
           </span>
         </div>
       </div>
+      <ProjectSummary projects={projects}/>
       <Stats tasks={tasks} />
       <RecentTasks tasks={tasks} />
     </main>
