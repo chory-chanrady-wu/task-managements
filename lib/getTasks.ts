@@ -1,9 +1,9 @@
 export async function getTasks() {
   const [tasksRes, projectsRes] = await Promise.all([
-    fetch("http://localhost:3001/tasks", {
+    fetch("https://json-api-self-server.vercel.app/tasks", {
       cache: "no-store",
     }),
-    fetch("http://localhost:3001/projects", {
+    fetch("https://json-api-self-server.vercel.app/projects", {
       cache: "no-store",
     }),
   ]);
